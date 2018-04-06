@@ -8,7 +8,7 @@
       <li
         v-for="product in products"
       >
-        {{product.title}} - {{product.price}}
+        {{product.title}} - {{product.price | currency}} - {{product.inventory}}
         <button @click="addProductToCart(product)">Add to Cart</button>
       </li>
     </ul>

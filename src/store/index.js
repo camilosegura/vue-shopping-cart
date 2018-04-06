@@ -12,6 +12,28 @@ const store = new Vuex.Store({
   getters: {
     availableProducts (state, getters) {
       return state.products.filter(product => product.inventory > 0)
+    },
+    getCartProducts (state) {
+      const products = []
+
+      state.cart.length && state.cart.map(item => {
+        const product = state.products.find(product => product.id === item.id)
+
+        if (product) {
+          products.push({
+            ...product,
+            quantity: item.quantity
+          })
+        }
+      })
+
+      return products
+    },
+    cartTotal (state, getters) {
+      return getters.getCartProducts.reduce((total, product) => {
+        total += product.price * product.quantity
+        return total
+      }, 0)
     }
   },
   actions: {
