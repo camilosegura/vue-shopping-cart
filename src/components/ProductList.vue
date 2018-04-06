@@ -9,6 +9,7 @@
         v-for="product in products"
       >
         {{product.title}} - {{product.price}}
+        <button @click="addProductToCart(product)">Add to Cart</button>
       </li>
     </ul>
   </div>
@@ -33,6 +34,11 @@
         .then(() => {
           this.loading = false
         })
+    },
+    methods: {
+      addProductToCart (product) {
+        this.$store.dispatch('addProductToCart', product)
+      }
     }
   }
 </script>
