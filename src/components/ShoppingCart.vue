@@ -9,6 +9,8 @@
       </li>
     </ul>
     <div>Total: {{total  | currency}}</div>
+    <button @click="checkout()">Checkout</button>
+    <p v-if="checkoutStatus">{{checkoutStatus}}</p>
   </div>
 </template>
 
@@ -21,6 +23,14 @@
       },
       total () {
         return this.$store.getters.cartTotal
+      },
+      checkoutStatus () {
+        return this.$store.state.checkoutStatus
+      }
+    },
+    methods: {
+      checkout () {
+        this.$store.dispatch('checkout')
       }
     }
   }
