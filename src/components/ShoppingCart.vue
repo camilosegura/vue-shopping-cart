@@ -20,16 +20,16 @@
   export default {
     name: 'ShoppingCart',
     computed: {
-      ...mapGetters({
+      ...mapGetters('cart', {
         products: 'getCartProducts',
         total: 'cartTotal'
       }),
-      ...mapState({
-        checkoutStatus: state => state.cart.checkoutStatus
+      ...mapState('cart', {
+        checkoutStatus: state => state.checkoutStatus
       })
     },
     methods: {
-      ...mapActions({
+      ...mapActions('cart', {
         checkout: 'checkout'
       })
     }

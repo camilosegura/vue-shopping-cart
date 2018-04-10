@@ -1,6 +1,7 @@
 import shop from '@/api/shop'
 
 const products = {
+  namespaced: true,
   state: {
     items: []
   },

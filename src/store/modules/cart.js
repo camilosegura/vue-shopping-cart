@@ -1,6 +1,7 @@
 import shop from '@/api/shop'
 
 const cart = {
+  namespaced: true,
   state: {
     items: [],
     checkoutStatus: null
@@ -31,7 +32,7 @@ const cart = {
   },
   actions: {
     addProductToCart (context, product) {
-      if (context.getters.productIsInStock(product)) {
+      if (context.rootGetters['products/productIsInStock'](product)) {
         const cartItem = context.state.items.find(item => item.id === product.id)
 
         if (cartItem) {
@@ -40,7 +41,7 @@ const cart = {
           context.commit('pushProductToCart', product.id)
         }
 
-        context.commit('decrementProductInventory', product)
+        context.commit('products/decrementProductInventory', product, {root: true})
       }
     },
     checkout (context) {
