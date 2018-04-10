@@ -15,23 +15,23 @@
 </template>
 
 <script>
+  import {mapState, mapGetters, mapActions} from 'vuex'
+
   export default {
     name: 'ShoppingCart',
     computed: {
-      products () {
-        return this.$store.getters.getCartProducts
-      },
-      total () {
-        return this.$store.getters.cartTotal
-      },
-      checkoutStatus () {
-        return this.$store.state.checkoutStatus
-      }
+      ...mapGetters({
+        products: 'getCartProducts',
+        total: 'cartTotal'
+      }),
+      ...mapState({
+        checkoutStatus: state => state.checkoutStatus
+      })
     },
     methods: {
-      checkout () {
-        this.$store.dispatch('checkout')
-      }
+      ...mapActions({
+        checkout: 'checkout'
+      })
     }
   }
 </script>
