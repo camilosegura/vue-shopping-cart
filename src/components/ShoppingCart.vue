@@ -25,7 +25,7 @@
         total: 'cartTotal'
       }),
       ...mapState({
-        checkoutStatus: state => state.checkoutStatus
+        checkoutStatus: state => state.cart.checkoutStatus
       })
     },
     methods: {
